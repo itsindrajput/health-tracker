@@ -1,1 +1,50 @@
-<p>workout-list works!</p>
+<div class="max-w-4xl mx-auto p-6 bg-white rounded-md shadow-md">
+  <div class="mb-4 flex justify-between">
+    <input
+      type="text"
+      placeholder="Search by name"
+      [(ngModel)]="searchText"
+      (ngModelChange)="filterUsers()"
+      class="p-2 border border-gray-300 rounded-md"
+    />
+    <select
+      [(ngModel)]="selectedWorkoutType"
+      (ngModelChange)="filterUsers()"
+      class="p-2 border border-gray-300 rounded-md"
+    >
+      <option value="">Filter by workout type</option>
+      <option value="Running">Running</option>
+      <option value="Cycling">Cycling</option>
+      <option value="Swimming">Swimming</option>
+      <option value="Yoga">Yoga</option>
+    </select>
+  </div>
+  <table class="min-w-full bg-white">
+    <thead>
+      <tr>
+        <th class="py-2">Name</th>
+        <th class="py-2">Workouts</th>
+        <th class="py-2">Number of Workouts</th>
+        <th class="py-2">Total Workout Minutes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of paginateUsers()">
+        <td class="border px-4 py-2">{{ user.name }}</td>
+        <td class="border px-4 py-2">{{ getWorkoutTypes(user) }}</td>
+        <td class="border px-4 py-2">{{ user.workouts.length }}</td>
+        <td class="border px-4 py-2">{{ getTotalWorkoutMinutes(user) }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="mt-4 flex justify-center">
+    <button
+      *ngFor="let page of [].constructor(totalPages); let i = index"
+      (click)="goToPage(i + 1)"
+      [class.bg-blue-500]="currentPage === i + 1"
+      class="px-3 py-1 mx-1 border rounded-md"
+    >
+      {{ i + 1 }}
+    </button>
+  </div>
+</div>
