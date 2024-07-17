@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { WorkoutFormComponent } from './workout-form/workout-form.component';
 import { WorkoutListComponent } from './workout-list/workout-list.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 const routes: Routes = [
   { path: '', component: WorkoutFormComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forRoot(routes),
     AppComponent,
-    WorkoutFormComponent
+    WorkoutFormComponent,
+    NgxPaginationModule
   ],
   bootstrap: []
 })
