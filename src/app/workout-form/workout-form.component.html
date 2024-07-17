@@ -1,43 +1,56 @@
-<div class="max-w-md mx-auto bg-white p-6 rounded-md shadow-md">
-  <h2 class="text-2xl font-bold mb-4">Add Workout</h2>
-  <form>
-    <!-- <form #workoutForm="ngForm" (ngSubmit)="onSubmit(workoutForm)"> -->
-    <div class="mb-4">
-      <label class="block text-sm font-medium text-gray-700">User Name</label>
-      <input
-        type="text"
-        name="username"
-        ngModel
-        required
-        class="mt-1 p-2 block w-full border border-gray-300 rounded-md"
-      />
-    </div>
-    <div class="mb-4">
-      <label class="block text-sm font-medium text-gray-700"
-        >Workout Type</label
+<main class="flex-grow p-3">
+  <div
+    class="max-w-md mx-auto bg-slate-50 p-6 mt-32 rounded-md shadow-md flex flex-col items-center"
+  >
+    <h2 class="text-2xl font-bold mb-8 text-black">Add Workout</h2>
+    <form class="w-full">
+      <div class="mb-10 w-full">
+        <label class="block text-sm font-medium text-black">User Name *</label>
+        <input
+          type="text"
+          name="username"
+          ngModel
+          required
+          class="mt-2 p-2 w-full bg-blue-100 rounded-md text-black border-b-2 border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+      <div class="flex space-x-4 mb-10">
+        <div class="w-1/2">
+          <label class="block text-sm font-medium text-black"
+            >Workout Type *</label
+          >
+          <select
+            name="workoutType"
+            ngModel
+            required
+            class="mt-2 p-2 w-full bg-blue-100 rounded-md text-black border-b-2 border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="Running">Running</option>
+            <option value="Cycling">Cycling</option>
+            <option value="Swimming">Swimming</option>
+            <option value="Yoga">Yoga</option>
+            <option value="Meditation">Meditation</option>
+          </select>
+        </div>
+        <div class="w-1/2">
+          <label class="block text-sm font-medium text-black"
+            >Workout Minutes *</label
+          >
+          <input
+            type="number"
+            name="workoutMinutes"
+            ngModel
+            required
+            class="mt-2 p-2 w-full bg-blue-100 rounded-md text-black border-b-2 border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+      </div>
+      <button
+        type="submit"
+        class="bg-white text-blue-500 pt-2 pb-2 pl-5 pr-5 rounded-full border border-blue-500 hover:bg-blue-500 hover:text-white transition duration-300 shadow-lg shadow-blue-500/40"
       >
-      <input
-        type="text"
-        name="workoutType"
-        ngModel
-        required
-        class="mt-1 p-2 block w-full border border-gray-300 rounded-md"
-      />
-    </div>
-    <div class="mb-4">
-      <label class="block text-sm font-medium text-gray-700"
-        >Workout Minutes</label
-      >
-      <input
-        type="number"
-        name="workoutMinutes"
-        ngModel
-        required
-        class="mt-1 p-2 block w-full border border-gray-300 rounded-md"
-      />
-    </div>
-    <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-md">
-      Add Workout
-    </button>
-  </form>
-</div>
+        Add Workout
+      </button>
+    </form>
+  </div>
+</main>
