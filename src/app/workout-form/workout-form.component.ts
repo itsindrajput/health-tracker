@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { WorkoutListComponent } from '../workout-list/workout-list.component';
 
 @Component({
   selector: 'app-workout-form',
+  standalone: true,
   templateUrl: './workout-form.component.html',
   styleUrls: ['./workout-form.component.css']
 })

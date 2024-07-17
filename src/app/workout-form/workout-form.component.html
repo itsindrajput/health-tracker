@@ -3,7 +3,12 @@
     class="max-w-md mx-auto bg-slate-50 p-6 mt-32 rounded-md shadow-md flex flex-col items-center"
   >
     <h2 class="text-2xl font-bold mb-8 text-black">Add Workout</h2>
-    <form class="w-full">
+    <form>
+      <!-- <form
+      class="w-full"
+      #workoutForm="ngForm"
+      (ngSubmit)="onSubmit(workoutForm)"
+    > -->
       <div class="mb-10 w-full">
         <label class="block text-sm font-medium text-black">User Name *</label>
         <input
