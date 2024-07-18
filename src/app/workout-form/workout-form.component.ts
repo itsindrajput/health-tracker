@@ -12,8 +12,8 @@ import { WorkoutListComponent } from '../workout-list/workout-list.component';
 })export class WorkoutFormComponent {
   workout = {
     username: '',
-    workoutType: '',
-    workoutMinutes: null
+    workoutType: 'Cycling',
+    workoutMinutes: null as number | null
   };
 
   constructor(private router: Router) {}
