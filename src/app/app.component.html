@@ -20,16 +20,22 @@
         >
       </li>
       <li>
-        <a routerLink="/workout-list" class="block text-base hover:underline"
+        <a
+          routerLink="/workout-list"
+          class="block text-base hover:underline"
+          onclick="return false;"
           >Workout List</a
         >
       </li>
-      <li><a href="#" class="block text-base hover:underline">Progress</a></li>
+      <li>
+        <a routerLink="" class="block text-base hover:underline">Progress</a>
+      </li>
     </ul>
   </div>
 </header>
 
 <!--Workout Form-->
+
 <router-outlet></router-outlet>
 
 <!-- Footer -->

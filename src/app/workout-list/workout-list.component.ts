@@ -64,7 +64,7 @@ export class WorkoutListComponent implements OnInit {
   }
 
   loadUsersFromLocalStorage() {
-    const localStorageUsers = JSON.parse(localStorage.getItem('users') || '[]');
+    const localStorageUsers = JSON.parse(localStorage.getItem('workouts') || '[]');
     localStorageUsers.forEach((localStorageUser: any) => {
       const userIndex = this.users.findIndex(user => user.name === localStorageUser.username);
       if (userIndex !== -1) {
