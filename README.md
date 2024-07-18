@@ -95,6 +95,6 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 Author: Rishabh Kumar Singh <br />
 License: This project is licensed under the MIT License. See the LICENSE file for details.
-Contact: itsindrajput@gmail.com
+Contact: itsindrajput@gmail.com <br />
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8.

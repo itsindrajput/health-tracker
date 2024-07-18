@@ -1,4 +1,27 @@
 <div class="max-w-4xl mx-auto p-6 bg-white rounded-md shadow-md">
+  <div class="flex justify-between mb-4">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      (input)="applyFilters()"
+      placeholder="Search by name"
+      class="px-4 py-2 border rounded-md"
+    />
+    <select
+      [(ngModel)]="filterType"
+      (change)="applyFilters()"
+      class="px-4 py-2 border rounded-md"
+    >
+      <option value="">Filter by workout type</option>
+      <option value="All">All</option>
+      <option value="Running">Running</option>
+      <option value="Cycling">Cycling</option>
+      <option value="Swimming">Swimming</option>
+      <option value="Yoga">Yoga</option>
+      <option value="Meditation">Meditation</option>
+    </select>
+  </div>
+
   <table class="min-w-full bg-white">
     <thead>
       <tr>
@@ -17,4 +40,44 @@
       </tr>
     </tbody>
   </table>
+
+  <div class="mt-4 flex justify-center">
+    <button
+      (click)="goToPage(currentPage - 1)"
+      [disabled]="currentPage === 1"
+      class="px-3 py-1 mx-1 border rounded-md"
+    >
+      &lt;&lt; Previous
+    </button>
+    <button
+      *ngFor="let page of pagesArray"
+      (click)="goToPage(page)"
+      [class.bg-blue-500]="currentPage === page"
+      [class.text-white]="currentPage === page"
+      class="px-3 py-1 mx-1 border rounded-md"
+    >
+      {{ page }}
+    </button>
+    <button
+      (click)="goToPage(currentPage + 1)"
+      [disabled]="currentPage === pagesArray.length"
+      class="px-3 py-1 mx-1 border rounded-md"
+    >
+      Next &gt;&gt;
+    </button>
+  </div>
+
+  <div class="mt-4 flex justify-center">
+    <label for="itemsPerPage">Items per page: </label>
+    <select
+      id="itemsPerPage"
+      [(ngModel)]="itemsPerPage"
+      (change)="updateItemsPerPage()"
+      class="ml-2 px-4 py-2 border rounded-md"
+    >
+      <option *ngFor="let option of itemsPerPageOptions" [value]="option">
+        {{ option }}
+      </option>
+    </select>
+  </div>
 </div>

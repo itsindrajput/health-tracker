@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 interface Workout {
   type: string;
@@ -16,22 +17,24 @@ interface User {
   templateUrl: './workout-list.component.html',
   styleUrls: ['./workout-list.component.css'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule, FormsModule]
 })
 export class WorkoutListComponent implements OnInit {
   users: User[] = [];
   paginatedUsers: User[] = [];
   currentPage = 1;
-  itemsPerPage = 3;
+  itemsPerPage = 5;
   pagesArray: number[] = [];
+  searchTerm: string = '';
+  filterType: string = '';
+  itemsPerPageOptions = [5, 10, 15];
 
   constructor() {}
 
   ngOnInit() {
     this.loadInitialUsers();
     this.loadUsersFromLocalStorage();
-    this.paginateUsers();
-    this.generatePagesArray();
+    this.applyFilters();
   }
 
   loadInitialUsers() {
@@ -81,13 +84,32 @@ export class WorkoutListComponent implements OnInit {
         });
       }
     });
-    this.generatePagesArray();
+  }
+
+  applyFilters() {
+    let filteredUsers = this.users;
+
+    if (this.searchTerm) {
+      filteredUsers = filteredUsers.filter(user =>
+        user.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    }
+
+    if (this.filterType && this.filterType !== 'All') {
+      filteredUsers = filteredUsers.filter(user =>
+        user.workouts.some(workout => workout.type === this.filterType)
+      );
+    }
+
+    this.paginatedUsers = filteredUsers.slice(
+      (this.currentPage - 1) * this.itemsPerPage,
+      this.currentPage * this.itemsPerPage
+    );
+    this.generatePagesArray(filteredUsers.length);
   }
 
   paginateUsers() {
-    const start = (this.currentPage - 1) * this.itemsPerPage;
-    const end = start + this.itemsPerPage;
-    this.paginatedUsers = this.users.slice(start, end);
+    this.applyFilters();
   }
 
   goToPage(page: number) {
@@ -95,8 +117,13 @@ export class WorkoutListComponent implements OnInit {
     this.paginateUsers();
   }
 
-  generatePagesArray() {
-    const totalPages = Math.ceil(this.users.length / this.itemsPerPage);
+  updateItemsPerPage() {
+    this.currentPage = 1;
+    this.applyFilters();
+  }
+
+  generatePagesArray(totalItems: number) {
+    const totalPages = Math.ceil(totalItems / this.itemsPerPage);
     this.pagesArray = Array.from({ length: totalPages }, (_, i) => i + 1);
   }
 
