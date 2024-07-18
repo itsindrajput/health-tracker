@@ -113,8 +113,10 @@ export class WorkoutListComponent implements OnInit {
   }
 
   goToPage(page: number) {
-    this.currentPage = page;
-    this.paginateUsers();
+    if (page > 0 && page <= this.pagesArray.length) {
+      this.currentPage = page;
+      this.paginateUsers();
+    }
   }
 
   updateItemsPerPage() {

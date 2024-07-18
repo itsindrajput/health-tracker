@@ -1,16 +1,16 @@
-<div class="max-w-4xl mx-auto p-6 bg-white rounded-md shadow-md">
-  <div class="flex justify-between mb-4">
+<div class="max-w-4xl mx-auto p-6 place-content-center min-h-[86vh]">
+  <div class="flex flex-col md:flex-row md:justify-between mb-12">
     <input
       type="text"
       [(ngModel)]="searchTerm"
       (input)="applyFilters()"
       placeholder="Search by name"
-      class="px-4 py-2 border rounded-md"
+      class="mb-2 md:mb-0 px-4 py-2 bg-blue-100 border-b-2 border-gray-600 rounded-md h-12 md:w-2/5"
     />
     <select
       [(ngModel)]="filterType"
       (change)="applyFilters()"
-      class="px-4 py-2 border rounded-md"
+      class="mb-2 md:mb-0 px-4 py-2 bg-blue-100 border-b-2 border-gray-600 rounded-md h-12 md:w-2/5 cursor-pointer"
     >
       <option value="">Filter by workout type</option>
       <option value="All">All</option>
@@ -22,30 +22,32 @@
     </select>
   </div>
 
-  <table class="min-w-full bg-white">
+  <table
+    class="min-w-full bg-white table-auto text-left border-collapse rounded-md shadow-md shadow-neutral-500"
+  >
     <thead>
       <tr>
-        <th class="py-2 border-b">Name</th>
-        <th class="py-2 border-b">Workouts</th>
-        <th class="py-2 border-b">Number of Workouts</th>
-        <th class="py-2 border-b">Total Workout Minutes</th>
+        <th class="p-5 border-b">Name</th>
+        <th class="p-5 border-b">Workouts</th>
+        <th class="p-5 border-b">Number of Workouts</th>
+        <th class="p-5 border-b">Total Workout Minutes</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of paginatedUsers">
-        <td class="border px-4 py-2">{{ user.name }}</td>
-        <td class="border px-4 py-2">{{ getWorkoutTypes(user) }}</td>
-        <td class="border px-4 py-2">{{ user.workouts.length }}</td>
-        <td class="border px-4 py-2">{{ getTotalWorkoutMinutes(user) }}</td>
+      <tr *ngFor="let user of paginatedUsers" class="text-left">
+        <td class="border-b-2 px-5 py-4">{{ user.name }}</td>
+        <td class="border-b-2 px-5 py-4">{{ getWorkoutTypes(user) }}</td>
+        <td class="border-b-2 px-5 py-4">{{ user.workouts.length }}</td>
+        <td class="border-b-2 px-5 py-4">{{ getTotalWorkoutMinutes(user) }}</td>
       </tr>
     </tbody>
   </table>
 
-  <div class="mt-4 flex justify-center">
+  <div class="mt-8 flex justify-center flex-wrap">
     <button
       (click)="goToPage(currentPage - 1)"
       [disabled]="currentPage === 1"
-      class="px-3 py-1 mx-1 border rounded-md"
+      class="px-3 py-1 mx-1 mb-2 md:mb-0 border rounded-md cursor-pointer"
     >
       &lt;&lt; Previous
     </button>
@@ -54,30 +56,30 @@
       (click)="goToPage(page)"
       [class.bg-blue-500]="currentPage === page"
       [class.text-white]="currentPage === page"
-      class="px-3 py-1 mx-1 border rounded-md"
+      class="px-3 py-1 mx-1 mb-2 md:mb-0 border rounded-md cursor-pointer"
     >
       {{ page }}
     </button>
     <button
       (click)="goToPage(currentPage + 1)"
       [disabled]="currentPage === pagesArray.length"
-      class="px-3 py-1 mx-1 border rounded-md"
+      class="px-3 py-1 mx-1 mb-2 md:mb-0 border rounded-md cursor-pointer"
     >
       Next &gt;&gt;
     </button>
-  </div>
 
-  <div class="mt-4 flex justify-center">
-    <label for="itemsPerPage">Items per page: </label>
-    <select
-      id="itemsPerPage"
-      [(ngModel)]="itemsPerPage"
-      (change)="updateItemsPerPage()"
-      class="ml-2 px-4 py-2 border rounded-md"
-    >
-      <option *ngFor="let option of itemsPerPageOptions" [value]="option">
-        {{ option }}
-      </option>
-    </select>
+    <div class="ml-2 mt-2 md:mt-0">
+      <label for="itemsPerPage">Items per page: </label>
+      <select
+        id="itemsPerPage"
+        [(ngModel)]="itemsPerPage"
+        (change)="updateItemsPerPage()"
+        class="px-4 py-2 border rounded-md cursor-pointer"
+      >
+        <option *ngFor="let option of itemsPerPageOptions" [value]="option">
+          {{ option }}
+        </option>
+      </select>
+    </div>
   </div>
 </div>
