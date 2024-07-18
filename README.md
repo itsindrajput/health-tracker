@@ -93,7 +93,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 ## Additional Information
 
-Author: Rishabh Kumar Singh
+Author: Rishabh Kumar Singh <br />
 License: This project is licensed under the MIT License. See the LICENSE file for details.
 Contact: itsindrajput@gmail.com
 
